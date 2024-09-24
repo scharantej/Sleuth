@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Incident Investigation Game</title>
+</head>
+<body>
+<h1>Incident Investigation Game</h1>
+<div id="game-board"></div>
+<div id="clues"></div>
+<form action="/investigate_card" method="POST">
+<label for="card_id">Card ID:</label>
+<input type="text" name="card_id" id="card_id">
+<input type="submit" value="Investigate Card">
+</form>
+<form action="/use_clue" method="POST">
+<label for="clue_id">Clue ID:</label>
+<input type="text" name="clue_id" id="clue_id">
+<input type="submit" value="Use Clue">
+</form>
+<form action="/propose_solution" method="POST">
+<label for="solution">Solution:</label>
+<input type="text" name="solution" id="solution">
+<input type="submit" value="Propose Solution">
+</form>
+<script src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
+<script>
+const socket = io();
+socket.on('connect', () => {
+console.log('Connected to the server');
+});
+socket.on('disconnect', () => {
+console.log('Disconnected from the server');
+});
+socket.on('game_update', (data) => {
+console.log('Received game update:', data);
+// Update the game board and clues based on the received data
+});
+</script>
+</body>
+</html>
+
